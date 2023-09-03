@@ -17,7 +17,8 @@ function authentification(){
             else{
                 $nom=$_POST['nom'];
                 $mdp=sha1($_POST['mdp']);
-                if(($nom==$_SESSION['user']) && ($mdp==$_SESSION["mdp"])){
+                if(isset($_SESSION['user'])&&($nom==$_SESSION['user']) && $_SESSION['mdp']&& ($mdp==$_SESSION["mdp"])){
+                    $_SESSION["message"]="connecté";
                     verification();
                 }
                 else{
@@ -87,7 +88,17 @@ function verification(){
             header("location:views/profil.php");
         }
         else{
-            enregistrement();           
+            $message="Connectez-vous !";
+            accueil();           
         }
     }
+    else{
+        $message="identifiez-vous !";
+        accueil();
+    }
+
+}
+function quitter(){
+    unset($_SESSION['message']);
+    verification();
 }

@@ -14,6 +14,9 @@ if(isset($_GET['action']))
     if($_GET['action']=="ajouter"){
         ajouter();
     }
+    if($_GET['action']=="déconnexion"){
+        quitter();
+    }
 }
 else{
     accueil();

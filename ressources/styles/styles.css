@@ -1,0 +1,10 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+.button{
+    background-color: blue;
+    border-radius: 15px;
+    font-weight: bold;
+}
