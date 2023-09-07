@@ -1,9 +1,17 @@
 <?php
-session_start();
-function ajouters($nom,$email,$user,$mdp){
-    $_SESSION["nom"]=$nom;
-    $_SESSION["email"]=$email;
-    $_SESSION["user"]=$user;
-    $_SESSION["mdp"]=$mdp;
-    $_SESSION['message']="connecté";
+
+function addUsers($nom,$username,$mdp,$mail){
+    $con=new PDO("mysql:host=localhost;dbname=tp_8","root","");
+    $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    $sql="INSERT INTO users (nom,username,mdp,mail) values(?,?,?,?)";
+    $ajout=$con->prepare($sql);
+    $ajout->execute(array($nom,$username,$mdp,$mail));
+}
+
+function Selects($username,$mdp){
+    $con=new PDO("mysql:host=localhost;dbname=tp_8","root","");
+    $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    $req="SELECT * FROM users WHERE username=? AND mdp=? ";
+    $sel=$con->prepare($req);
+    return $sel->execute(array($username,$mdp));
 }

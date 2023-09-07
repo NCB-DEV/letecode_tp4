@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("modeles/modele.php");
 function accueil(){
     require('views/authentification.php');
@@ -17,13 +18,9 @@ function authentification(){
             else{
                 $nom=$_POST['nom'];
                 $mdp=sha1($_POST['mdp']);
-                if(isset($_SESSION['user'])&&($nom==$_SESSION['user']) && $_SESSION['mdp']&& ($mdp==$_SESSION["mdp"])){
-                    $_SESSION["message"]="connecté";
-                    verification();
-                }
-                else{
-                    $message="Utilisateur non réconnu";
-                    require("views/authentification.php");
+                $reqs=Selects($nom,$mdp);
+                while($donnees = $reqs->fetch()){
+                    echo $donnees["nom"];
                 }
             }
         }
@@ -69,10 +66,10 @@ function ajouter(){
                             }
                             else{
                                 $nom=$_POST['nom_complet'];
-                                $email=$_POST['email'];
+                                $mail=$_POST['email'];
                                 $username=$_POST['username'];
                                 $mdp=sha1($_POST['mdp']);
-                                ajouters($nom,$email,$username,$mdp);
+                                addUsers($nom,$username,$mdp,$mail);
                                 verification();
                             }
                         }

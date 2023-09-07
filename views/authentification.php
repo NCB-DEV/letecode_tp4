@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!------------$_COOKIE
+    lien github:https://github.com/NCB-DEV/letecode_tp4.git
+    ------------------>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authentification</title>
