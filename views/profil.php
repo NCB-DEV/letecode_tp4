@@ -41,8 +41,8 @@
     <div>
         <img src="../ressources/images/html.png" alt=""><br>
        <p>bienvenu dans votre compte,<?php echo $_SESSION["nom"];?></p> 
-        <?php echo "@".$_SESSION["user"];?><br>
-        <?php echo $_SESSION["email"];?><br>
+        <?php echo "@".$_SESSION["username"];?><br>
+        <?php echo $_SESSION["mail"];?><br>
         <div class="button"><a href="/connexion/?action=déconnexion">Déconnexion</a></div>
     </div>
 </body>

@@ -19,8 +19,16 @@ function authentification(){
                 $nom=$_POST['nom'];
                 $mdp=sha1($_POST['mdp']);
                 $reqs=Selects($nom,$mdp);
-                while($donnees = $reqs->fetch()){
-                    echo $donnees["nom"];
+                if(Count( $reqs)>0){
+                    $_SESSION['message']="connecté";
+                    $_SESSION['username']=$reqs[0]['username'];
+                    $_SESSION['nom']=$reqs[0]["nom"]
+                    $_SESSION['mail']=$reqs[0]['mail'];
+                    verification();
+                }
+                else{
+                    $message="Utilisateur non reconnu";
+                    require('views/authentification.php');
                 }
             }
         }

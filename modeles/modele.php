@@ -11,7 +11,8 @@ function addUsers($nom,$username,$mdp,$mail){
 function Selects($username,$mdp){
     $con=new PDO("mysql:host=localhost;dbname=tp_8","root","");
     $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    $req="SELECT * FROM users WHERE username=? AND mdp=? ";
+    $req="SELECT * FROM users WHERE username=? AND mdp=? limit 1";
     $sel=$con->prepare($req);
-    return $sel->execute(array($username,$mdp));
+    $sel->execute(array($username,$mdp));
+    return $users=$sel->fetchAll();
 }
